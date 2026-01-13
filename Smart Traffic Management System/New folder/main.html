@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Traffic Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-purple-600 min-h-screen font-sans text-gray-800">
+    
+    <div class="max-w-7xl mx-auto p-5">
+        <div class="text-center mb-8 text-white">
+            <h1 class="text-5xl font-bold mb-3 drop-shadow-lg">🚦 Smart Traffic Management System</h1>
+            <p class="text-xl opacity-90">A smart step towards turning chaos into mobility!!</p>
+        </div>
+            <a href="Homepage.html" align="Center" width= 200px><button class="ai-btn">Home</button></a>
+
+        <div id="loginSection" class="flex justify-center items-center min-h-[60vh]">
+            <div class="bg-white/95 backdrop-blur-md p-10 rounded-2xl shadow-2xl w-full max-w-md text-center">
+                <h2 class="text-3xl font-bold mb-6">System Login</h2>
+                <div class="flex mb-8 bg-gray-100 rounded-lg overflow-hidden">
+                    <button class="login-tab flex-1 p-4 font-bold cursor-pointer transition-all bg-blue-500 text-white" onclick="switchTab('admin', this)">Admin Login</button>
+                    <button class="login-tab flex-1 p-4 font-bold cursor-pointer transition-all" onclick="switchTab('system', this)">System Login</button>
+                </div>
+
+                <form id="loginForm">
+                    <div class="mb-5 text-left">
+                        <label for="username" class="block mb-1.5 font-bold text-gray-600">Username</label>
+                        <input type="text" id="username" required class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="mb-5 text-left">
+                        <label for="password" class="block mb-1.5 font-bold text-gray-600">Password</label>
+                        <input type="password" id="password" required class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                    </div>
+                    <button type="submit" class="w-full p-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg text-base font-bold cursor-pointer transition-transform hover:-translate-y-0.5">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="mainContent" class="hidden">
+            <button class="logout-btn absolute top-5 right-5 py-2.5 px-5 bg-red-600 text-white rounded-lg cursor-pointer font-bold hover:bg-red-700" onclick="logout()">Logout</button>
+            
+            <div class="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-5 h-[calc(100vh-140px)]">
+                <div class="sidebar order-2 md:order-none bg-white/95 backdrop-blur-md rounded-xl p-5">
+                    <h3 class="mb-5 text-blue-500 text-xl font-bold">Navigation</h3>
+                    <div id="adminNav" class="hidden">
+                        <button class="nav-item active" onclick="showSection('dashboard', this)">Dashboard</button>
+                        <button class="nav-item" onclick="showSection('database', this)">Database Management</button>
+                        <button class="nav-item" onclick="showSection('users', this)">User Management</button>
+                        <button class="nav-item" onclick="showSection('reports', this)">Reports</button>
+                        <button class="nav-item" onclick="showSection('settings', this)">Settings</button>
+                    </div>
+                    <div id="systemNav" class="hidden">
+                        <button class="nav-item active" onclick="showSection('ai-systems', this)">AI Systems</button>
+                        <button class="nav-item" onclick="showSection('yolo', this)">YOLO Detection</button>
+                        <button class="nav-item" onclick="showSection('pytorch', this)">PyTorch Recognition</button>
+                        <button class="nav-item" onclick="showSection('tracking', this)">Object Tracking</button>
+                        <button class="nav-item" onclick="showSection('vehicle', this)">Vehicle Detection</button>
+                    </div>
+                </div>
+
+                <div class="content-area order-1 md:order-none bg-white/95 backdrop-blur-md rounded-xl p-7 overflow-y-auto">
+                    
+                    <style>
+                        .ai-btn {
+                            padding: 12px 25px;
+                            background: linear-gradient(135deg, #667eea, #764ba2);
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            transition: transform 0.3s;
+                        }
+                        .ai-btn:hover {
+                            transform: translateY(-2px);
+                        }
+                        .nav-item {
+                            display: block; width: 100%; padding: 15px; margin: 10px 0;
+                            background: transparent; border: 2px solid #ddd; border-radius: 10px;
+                            text-align: left; cursor: pointer; transition: all 0.3s;
+                            text-decoration: none; color: #333;
+                        }
+                        .nav-item:hover { background: #667eea; color: white; border-color: #667eea; }
+                        .nav-item.active { background: #667eea; color: white; border-color: #667eea; }
+                        .login-tab.active { background: #667eea; color: white; }
+                    </style>
+
+                    <div id="dashboard" class="section">
+                        <h2 class="text-3xl font-bold mb-6">Traffic System Dashboard</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-xl text-center shadow-lg">
+                                <h3 class="text-4xl font-bold mb-2.5">1,247</h3>
+                                <p class="text-lg opacity-90">Active Cameras</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-xl text-center shadow-lg">
+                                <h3 class="text-4xl font-bold mb-2.5">98.7%</h3>
+                                <p class="text-lg opacity-90">System Uptime</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-xl text-center shadow-lg">
+                                <h3 class="text-4xl font-bold mb-2.5">15,432</h3>
+                                <p class="text-lg opacity-90">Vehicles Detected</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-xl text-center shadow-lg">
+                                <h3 class="text-4xl font-bold mb-2.5">23</h3>
+                                <p class="text-lg opacity-90">Traffic Violations</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">Recent Activity</h3>
+                            <table class="w-full border-collapse mt-5 bg-white rounded-lg overflow-hidden shadow-md">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Time</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Location</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Event Type</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="activityTable">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 px-4 border-b border-gray-200">10:45 AM</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Main St & 5th Ave</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Vehicle Detection</td>
+                                        <td class="p-3 px-4 border-b border-gray-200 text-green-600 font-medium">✓ Processed</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 px-4 border-b border-gray-200">10:43 AM</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Highway 101</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Speed Violation</td>
+                                        <td class="p-3 px-4 border-b border-gray-200 text-yellow-600 font-medium">⚠ Alert</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 px-4 border-b border-gray-200">10:41 AM</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Central Plaza</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Traffic Congestion</td>
+                                        <td class="p-3 px-4 border-b border-gray-200 text-red-600 font-medium">🚨 Critical</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="database" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">Database Management</h2>
+                        
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">Database Statistics</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-xl text-center shadow-lg">
+                                    <h3 class="text-4xl font-bold mb-2.5">2.4M</h3>
+                                    <p class="text-lg opacity-90">Total Records</p>
+                                </div>
+                                <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-xl text-center shadow-lg">
+                                    <h3 class="text-4xl font-bold mb-2.5">847 GB</h3>
+                                    <p class="text-lg opacity-90">Storage Used</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">Add New Record</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div class="mb-4">
+                                    <label class="block mb-1.5 font-bold text-gray-600">Camera ID</label>
+                                    <input type="text" id="cameraId" placeholder="CAM001" class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-1.5 font-bold text-gray-600">Location</label>
+                                    <input type="text" id="location" placeholder="Main St & 1st Ave" class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div class="mb-4">
+                                    <label class="block mb-1.5 font-bold text-gray-600">Event Type</label>
+                                    <select id="eventType" class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                                        <option>Vehicle Detection</option>
+                                        <option>Speed Violation</option>
+                                        <option>Traffic Congestion</option>
+                                        <option>Accident Detection</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-1.5 font-bold text-gray-600">Timestamp</label>
+                                    <input type="datetime-local" id="timestamp" class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                                </div>
+                            </div>
+                            <button class="ai-btn" onclick="addRecord()">Add Record</button>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">Database Records</h3>
+                            <table class="w-full border-collapse mt-5 bg-white rounded-lg overflow-hidden shadow-md">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-blue-500 text-white p-4 text-left">ID</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Camera</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Location</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Event</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Time</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="databaseTable">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 px-4 border-b border-gray-200">1</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">CAM001</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Main St & 5th Ave</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Vehicle Detection</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">2024-01-15 10:45</td>
+                                        <td class="p-3 px-4 border-b border-gray-200"><button onclick="deleteRecord(1)" class="text-red-600 hover:underline">Delete</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="ai-systems" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">AI Traffic Analysis Systems</h2>
+                        <p class="mb-8 text-gray-700">Select an AI system to analyze traffic footage and detect various objects and patterns.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="bg-white border-2 border-gray-300 rounded-xl p-6 text-center transition-all cursor-pointer hover:border-blue-500 hover:-translate-y-1.5 hover:shadow-xl" onclick="showSection('yolo')">
+                                <h3 class="text-blue-500 mb-4 text-2xl font-semibold">🎯 YOLO Object Recognition</h3>
+                                <p class="text-gray-600 leading-relaxed mb-5">Real-time object detection using You Only Look Once (YOLO) algorithm. Detects vehicles, pedestrians, and traffic signs.</p>
+                                <button class="ai-btn">Launch YOLO</button>
+                            </div>
+
+                            <div class="bg-white border-2 border-gray-300 rounded-xl p-6 text-center transition-all cursor-pointer hover:border-blue-500 hover:-translate-y-1.5 hover:shadow-xl" onclick="showSection('pytorch')">
+                                <h3 class="text-blue-500 mb-4 text-2xl font-semibold">🧠 PyTorch Recognition</h3>
+                                <p class="text-gray-600 leading-relaxed mb-5">Advanced deep learning object recognition using PyTorch framework. Provides detailed classification and feature extraction.</p>
+                                <button class="ai-btn">Launch PyTorch</button>
+                            </div>
+
+                            <div class="bg-white border-2 border-gray-300 rounded-xl p-6 text-center transition-all cursor-pointer hover:border-blue-500 hover:-translate-y-1.5 hover:shadow-xl" onclick="showSection('tracking')">
+                                <h3 class="text-blue-500 mb-4 text-2xl font-semibold">📍 Object Tracking</h3>
+                                <p class="text-gray-600 leading-relaxed mb-5">Multi-object tracking system that follows vehicles and pedestrians across multiple frames to analyze traffic flow.</p>
+                                <button class="ai-btn">Launch Tracking</button>
+                            </div>
+
+                            <div class="bg-white border-2 border-gray-300 rounded-xl p-6 text-center transition-all cursor-pointer hover:border-blue-500 hover:-translate-y-1.5 hover:shadow-xl" onclick="showSection('vehicle')">
+                                <h3 class="text-blue-500 mb-4 text-2xl font-semibold">🚗 Vehicle Detection</h3>
+                                <p class="text-gray-600 leading-relaxed mb-5">Specialized vehicle detection system that identifies different types of vehicles, counts traffic volume, and monitors lane usage.</p>
+                                <button class="ai-btn">Launch Detection</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="yolo" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">🎯 YOLO Object Recognition</h2>
+                        <p class="mb-4 text-gray-700">Live stream analysis and video upload for object detection using YOLO.</p>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">Live Camera Feed</h3>
+                                <img id="video" src="http://localhost:5000/video_feed" width="100%" class="rounded-lg shadow-md border border-gray-300">
+                                
+                                <div class="mt-4">
+                                    <h3 class="text-lg font-semibold mb-2">Select Camera</h3>
+                                    <select id="cameraSelect" class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500 mb-2">
+                                        <option value="0">Webcam 0</option>
+                                        <option value="1">Webcam 1</option>
+                                        <option value="2">Webcam 2</option>
+                                    </select>
+                                    <input id="ipcam" placeholder="rtsp:// or http:// camera URL" class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500 mb-2">
+                                    <button onclick="addIPCam()" class="ai-btn w-full">Add IP Cam</button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                                <h3 class="text-xl font-semibold mb-4">Upload Video File</h3>
+                                <div class="border-2 border-dashed border-blue-500 rounded-lg p-10 text-center my-5 cursor-pointer transition-all hover:bg-blue-500/10" onclick="document.getElementById('yoloVideo').click()">
+                                    <input type="file" id="yoloVideo" accept="video/*" class="hidden" onchange="handleVideoUpload('yolo')">
+                                    <p class="text-xl">📹 Click to upload video file</p>
+                                    <p class="text-sm text-gray-600 mt-2">Supports MP4, AVI, MOV formats</p>
+                                </div>
+                                
+                                <div class="hidden bg-yellow-100 border border-yellow-300 text-yellow-800 p-4 rounded-lg my-5" id="yoloStatus">
+                                    Processing video with YOLO algorithm...
+                                </div>
+                                
+                                <div class="hidden mt-5" id="yoloResults">
+                                    <h3 class="text-lg font-semibold mb-2">Detection Results for: <span id="yoloFileName" class="text-blue-600 font-bold"></span></h3>
+                                    <div class="bg-white border border-gray-200 rounded-lg p-5 my-2.5" id="yoloReport">
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <script>
+                           document.getElementById("cameraSelect").addEventListener("change", function() {
+                             setCamera(this.value);
+                           });
+                            function addIPCam(){
+                             const url = document.getElementById("ipcam").value;
+                             if(!url) return alert("Enter camera URL");
+                             const sel = document.getElementById("cameraSelect");
+                             const opt = document.createElement("option");
+                             opt.value = url; opt.text = url;
+                             sel.appendChild(opt);
+                             sel.value = url; // Select the newly added camera
+                             setCamera(url);
+                           }
+                             function setCamera(source){
+                             fetch("http://localhost:5000/set_camera", {
+                               method: "POST",
+                               headers: {"Content-Type":"application/json"},
+                               body: JSON.stringify({camera: source})
+                             }).then(r=>r.json()).then(j=>{
+                               console.log(j);
+                               // refresh stream (cache-busting)
+                               document.getElementById("video").src = "/video_feed?ts=" + Date.now();
+                             }).catch(e=>console.error(e));
+                           }
+                         </script>
+                    </div>
+
+                    <div id="pytorch" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">🧠 Real Time Object Recognition</h2>
+                        <p class="mb-4 text-gray-700">Advanced deep learning recognition using PyTorch neural networks.</p>
+                        
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">Upload Video</h3>
+                            <div class="border-2 border-dashed border-blue-500 rounded-lg p-10 text-center my-5 cursor-pointer transition-all hover:bg-blue-500/10" onclick="document.getElementById('pytorchVideo').click()">
+                                <input type="file" id="pytorchVideo" accept="video/*" class="hidden" onchange="handleVideoUpload('pytorch')">
+                                <p class="text-xl">🧠 Click to upload video file</p>
+                                <p class="text-sm text-gray-600 mt-2">Deep learning analysis with PyTorch</p>
+                            </div>
+                            
+                            <div class="hidden bg-yellow-100 border border-yellow-300 text-yellow-800 p-4 rounded-lg my-5" id="pytorchStatus">
+                                Processing with PyTorch neural network...
+                            </div>
+                            
+                            <div class="hidden mt-5" id="pytorchResults">
+                                <h3 class="text-lg font-semibold mb-2">Recognition Results for: <span id="pytorchFileName" class="text-blue-600 font-bold"></span></h3>
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 my-2.5" id="pytorchReport">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tracking" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">📍 Object Tracking Detection</h2>
+                        <p class="mb-4 text-gray-700">Video analysis for traffic flow and individual object path tracing.</p>
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">Upload Video</h3>
+                            <div class="border-2 border-dashed border-blue-500 rounded-lg p-10 text-center my-5 cursor-pointer transition-all hover:bg-blue-500/10" onclick="document.getElementById('trackingVideo').click()">
+                                <input type="file" id="trackingVideo" accept="video/*" class="hidden" onchange="handleVideoUpload('tracking')">
+                                <p>📍 Click to upload video file</p>
+                            </div>
+                            <div class="hidden bg-yellow-100 border border-yellow-300 text-yellow-800 p-4 rounded-lg my-5" id="trackingStatus">Initializing Tracking Algorithm...</div>
+                            <div class="hidden mt-5" id="trackingResults">
+                                <h3 class="text-lg font-semibold mb-2">Tracking Results for: <span id="trackingFileName" class="text-blue-600 font-bold"></span></h3>
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 my-2.5" id="trackingReport">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="vehicle" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">🚗 Vehicle Detection System</h2>
+                        <p class="mb-4 text-gray-700">Specialized detection for vehicle types, counts, and speed analysis.</p>
+                         <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">Upload Video</h3>
+                            <div class="border-2 border-dashed border-blue-500 rounded-lg p-10 text-center my-5 cursor-pointer transition-all hover:bg-blue-500/10" onclick="document.getElementById('vehicleVideo').click()">
+                                <input type="file" id="vehicleVideo" accept="video/*" class="hidden" onchange="handleVideoUpload('vehicle')">
+                                <p>🚗 Click to upload video file</p>
+                            </div>
+                            <div class="hidden bg-yellow-100 border border-yellow-300 text-yellow-800 p-4 rounded-lg my-5" id="vehicleStatus">Analyzing Traffic Flow...</div>
+                            <div class="hidden mt-5" id="vehicleResults">
+                                <h3 class="text-lg font-semibold mb-2">Vehicle Detection Results for: <span id="vehicleFileName" class="text-blue-600 font-bold"></span></h3>
+                                <div class="bg-white border border-gray-200 rounded-lg p-5 my-2.5" id="vehicleReport">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="users" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">User Management</h2>
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">System Users</h3>
+                            <table class="w-full border-collapse mt-5 bg-white rounded-lg overflow-hidden shadow-md">
+                                <thead>
+                                    <tr>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Username</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Role</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Last Login</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Status</th>
+                                        <th class="bg-blue-500 text-white p-4 text-left">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 px-4 border-b border-gray-200">admin</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">Administrator</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">2024-01-15 09:30</td>
+                                        <td class="p-3 px-4 border-b border-gray-200 text-green-600">Active</td>
+                                        <td class="p-3 px-4 border-b border-gray-200"><button onclick="editUser('admin')" class="text-blue-600 hover:underline">Edit</button></td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="p-3 px-4 border-b border-gray-200">system1</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">System User</td>
+                                        <td class="p-3 px-4 border-b border-gray-200">2024-01-15 08:45</td>
+                                        <td class="p-3 px-4 border-b border-gray-200 text-green-600">Active</td>
+                                        <td class="p-3 px-4 border-b border-gray-200"><button onclick="editUser('system1')" class="text-blue-600 hover:underline">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="reports" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">System Reports</h2>
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">Generate Reports</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div class="mb-4">
+                                    <label class="block mb-1.5 font-bold text-gray-600">Report Type</label>
+                                    <select class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                                        <option>Traffic Volume Report</option>
+                                        <option>Violation Summary</option>
+                                        <option>System Performance</option>
+                                        <option>AI Analysis Summary</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-1.5 font-bold text-gray-600">Date Range</label>
+                                    <input type="date" class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                                </div>
+                            </div>
+                            <button class="ai-btn" onclick="generateReport()">Generate Report</button>
+                        </div>
+                    </div>
+
+                    <div id="settings" class="section hidden">
+                        <h2 class="text-3xl font-bold mb-6">System Settings</h2>
+                        <div class="bg-white p-6 rounded-xl mb-5 shadow-md">
+                            <h3 class="text-xl font-semibold mb-4">AI Model Configuration</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div class="mb-4">
+                                    <label class="block mb-1.5 font-bold text-gray-600">YOLO Confidence Threshold</label>
+                                    <input type="range" min="0" max="100" value="80" class="w-full">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block mb-1.5 font-bold text-gray-600">Detection Sensitivity</label>
+                                    <select class="w-full p-3 border-2 border-gray-300 rounded-lg text-base transition-colors focus:outline-none focus:border-blue-500">
+                                        <option>High</option>
+                                        <option>Medium</option>
+                                        <option>Low</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="ai-btn" onclick="saveSettings()">Save Settings</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentUserType = 'admin';
+        let currentSection = 'dashboard';
+        let databaseRecords = [
+            {id: 1, camera: 'CAM001', location: 'Main St & 5th Ave', event: 'Vehicle Detection', time: '2024-01-15 10:45'}
+        ];
+
+        // Authentication system
+        const users = {
+            admin: { password: 'admin123', type: 'admin' },
+            system1: { password: 'system123', type: 'system' },
+            system2: { password: 'system456', type: 'system' }
+        };
+
+        // Initialize the application
+        function init() {
+            // Set default timestamp
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            const timestamp = now.toISOString().slice(0, 16);
+            if (document.getElementById('timestamp')) {
+                document.getElementById('timestamp').value = timestamp;
+            }
+            // Simulate real-time activity updates
+            setInterval(updateActivity, 30000);
+            updateDatabaseTable(); // Initial load
+            // Set initial dashboard visibility
+            document.getElementById('dashboard').classList.add('active');
+        }
+
+        // Tab switching for login
+        function switchTab(type, el) {
+            const tabs = document.querySelectorAll('.login-tab');
+            tabs.forEach(tab => tab.classList.remove('active', 'bg-blue-500', 'text-white'));
+            el.classList.add('active', 'bg-blue-500', 'text-white');
+            currentUserType = type;
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        // Login handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (users[username] && users[username].password === password) {
+                currentUserType = users[username].type;
+                showDashboard();
+                showNotification('Login successful!', 'success');
+            } else {
+                showNotification('Invalid username or password!', 'error');
+            }
+        });
+
+        // Show dashboard after login
+        function showDashboard() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            
+            if (currentUserType === 'admin') {
+                document.getElementById('adminNav').style.display = 'block';
+                document.getElementById('systemNav').style.display = 'none';
+                showSection('dashboard', document.querySelector('#adminNav .nav-item'));
+            } else {
+                document.getElementById('adminNav').style.display = 'none';
+                document.getElementById('systemNav').style.display = 'block';
+                showSection('ai-systems', document.querySelector('#systemNav .nav-item'));
+            }
+        }
+
+        // Section navigation
+        function showSection(sectionName, el) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+
+            // Show selected section
+            const targetSection = document.getElementById(sectionName);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            // Highlight active nav item
+            if (el) {
+                el.classList.add('active');
+            } else {
+                // Fallback to find the button by sectionName
+                const matchingButton = document.querySelector(`.nav-item[onclick="showSection('${sectionName}', this)"]`);
+                if (matchingButton) {
+                    matchingButton.classList.add('active');
+                }
+            }
+
+            currentSection = sectionName;
+        }
+
+        // Logout function
+        function logout() {
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            showNotification('Logged out successfully!', 'info');
+        }
+
+        // Database functions (Omitted for brevity, kept same as previous step)
+
+        function updateDatabaseTable() {
+            const tableBody = document.getElementById('databaseTable');
+            if (!tableBody) return;
+            tableBody.innerHTML = '';
+            
+            databaseRecords.forEach(record => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                row.innerHTML = `
+                    <td class="p-3 px-4 border-b border-gray-200">${record.id}</td>
+                    <td class="p-3 px-4 border-b border-gray-200">${record.camera}</td>
+                    <td class="p-3 px-4 border-b border-gray-200">${record.location}</td>
+                    <td class="p-3 px-4 border-b border-gray-200">${record.event}</td>
+                    <td class="p-3 px-4 border-b border-gray-200">${record.time}</td>
+                    <td class="p-3 px-4 border-b border-gray-200"><button onclick="deleteRecord(${record.id})" class="text-red-600 hover:underline font-medium">Delete</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function addRecord() {
+            const cameraId = document.getElementById('cameraId').value;
+            const location = document.getElementById('location').value;
+            const eventType = document.getElementById('eventType').value;
+            const timestamp = document.getElementById('timestamp').value;
+            
+            if (!cameraId || !location || !timestamp) {
+                showNotification('Please fill all fields!', 'error');
+                return;
+            }
+            
+            const newRecord = {
+                id: databaseRecords.length ? Math.max(...databaseRecords.map(r => r.id)) + 1 : 1,
+                camera: cameraId,
+                location: location,
+                event: eventType,
+                time: timestamp.replace('T', ' ')
+            };
+            
+            databaseRecords.push(newRecord);
+            updateDatabaseTable();
+            
+            document.getElementById('cameraId').value = '';
+            document.getElementById('location').value = '';
+            // Reset timestamp to current
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById('timestamp').value = now.toISOString().slice(0, 16);
+
+            showNotification('Record added successfully!', 'success');
+        }
+
+        function deleteRecord(id) {
+            databaseRecords = databaseRecords.filter(record => record.id !== id);
+            updateDatabaseTable();
+            showNotification('Record deleted successfully!', 'success');
+        }
+
+
+        // AI System functions
+        function generateReportContent(system, fileName) {
+            const randomObjects = Math.floor(Math.random() * 50) + 15;
+            const randomConfidence = (Math.random() * (99.9 - 90.0) + 90.0).toFixed(1);
+            const randomTime = (Math.random() * (5.0 - 1.0) + 1.0).toFixed(2);
+            const randomSpeed = (Math.random() * (120 - 40) + 40).toFixed(0);
+            const randomFlow = (Math.random() * (95 - 60) + 60).toFixed(1);
+
+            let content = '';
+
+            if (system === 'yolo') {
+                content = `
+                    <p><strong>File Analyzed:</strong> ${fileName}</p>
+                    <p><strong>Total Objects Detected:</strong> ${randomObjects} (Cars, Trucks, People)</p>
+                    <p><strong>Average Detection Confidence:</strong> ${randomConfidence}%</p>
+                    <p><strong>Traffic Congestion Level:</strong> ${randomFlow < 70 ? 'Low' : 'Medium'}</p>
+                    <p><strong>Processing Time:</strong> ${randomTime} seconds</p>
+                    <p class="mt-3 text-sm text-gray-700">Detailed logs available on server for file hash: ${Math.random().toString(36).substring(2, 10).toUpperCase()}</p>
+                `;
+            } else if (system === 'pytorch') {
+                const cars = Math.floor(randomObjects * 0.5);
+                const trucks = Math.floor(randomObjects * 0.2);
+                const peds = randomObjects - cars - trucks;
+                content = `
+                    <p><strong>File Analyzed:</strong> ${fileName}</p>
+                    <p class="font-bold mt-2 text-lg text-blue-800">Vehicle Classification Summary</p>
+                    <ul>
+                        <li><span class="font-semibold">Cars:</span> ${cars} units (Avg. Conf: ${(Math.random() * (98 - 90) + 90).toFixed(1)}%)</li>
+                        <li><span class="font-semibold">Trucks/Buses:</span> ${trucks} units (Avg. Conf: ${(Math.random() * (97 - 88) + 88).toFixed(1)}%)</li>
+                        <li><span class="font-semibold">Pedestrians:</span> ${peds} units</li>
+                    </ul>
+                    <p><strong>Model Used:</strong> ResNet-50</p>
+                    <p><strong>Processing Time:</strong> ${randomTime} seconds</p>
+                `;
+            } else if (system === 'tracking') {
+                const tracks = Math.floor(randomObjects * 0.8);
+                content = `
+                    <p><strong>File Analyzed:</strong> ${fileName}</p>
+                    <p><strong>Total Unique Tracks:</strong> ${tracks}</p>
+                    <p><strong>Average Flow Speed:</strong> ${randomSpeed} km/h</p>
+                    <p><strong>Longest Track Duration:</strong> ${(Math.random() * (15 - 5) + 5).toFixed(1)} seconds</p>
+                    <p class="${randomFlow < 65 ? 'text-red-600 font-bold' : 'text-green-600 font-bold'}">Traffic Flow Index (TFI): ${randomFlow}%</p>
+                `;
+            } else if (system === 'vehicle') {
+                const laneViolations = Math.floor(Math.random() * 5);
+                content = `
+                    <p><strong>File Analyzed:</strong> ${fileName}</p>
+                    <p><strong>Total Vehicles Counted:</strong> ${randomObjects + 10}</p>
+                    <p><strong>Peak Speed Recorded:</strong> ${randomSpeed} km/h</p>
+                    <p><strong>Lane Violation Alerts:</strong> ${laneViolations}</p>
+                    <p><strong>Analysis Status:</strong> Completed successfully. Check DB for violation records.</p>
+                `;
+            }
+            return content;
+        }
+
+        function handleVideoUpload(system) {
+            const fileInput = event.target;
+            const file = fileInput.files[0];
+            
+            if (!file) return;
+
+            const fileNameElement = document.getElementById(`${system}FileName`);
+            const statusElement = document.getElementById(`${system}Status`);
+            const resultsElement = document.getElementById(`${system}Results`);
+            const reportElement = document.getElementById(`${system}Report`);
+            
+            // 1. Update File Name
+            fileNameElement.textContent = file.name;
+
+            // 2. Show Processing Status
+            statusElement.classList.remove('hidden');
+            resultsElement.classList.add('hidden');
+            
+            // 3. Simulate Processing Delay
+            setTimeout(() => {
+                // 4. Generate & Insert Report Content
+                const reportContent = generateReportContent(system, file.name);
+                reportElement.innerHTML = reportContent;
+
+                // 5. Hide Status & Show Results
+                statusElement.classList.add('hidden');
+                resultsElement.classList.remove('hidden');
+                
+                showNotification(`${system.toUpperCase()} analysis completed for ${file.name}!`, 'success');
+                addActivity(`${system.toUpperCase()} Analysis`, `Video Processing: ${file.name}`, '<span class="text-green-600 font-medium">✓ Completed</span>');
+            }, 3000 + Math.random() * 2000); // 3 to 5 second delay
+        }
+
+        // Activity management (Omitted for brevity, kept same as previous step)
+        function addActivity(location, eventType, status) {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            const tableBody = document.getElementById('activityTable');
+            const newRow = document.createElement('tr');
+            newRow.className = 'hover:bg-gray-50';
+            
+            newRow.innerHTML = `
+                <td class="p-3 px-4 border-b border-gray-200">${timeString}</td>
+                <td class="p-3 px-4 border-b border-gray-200">${location}</td>
+                <td class="p-3 px-4 border-b border-gray-200">${eventType}</td>
+                <td class="p-3 px-4 border-b border-gray-200">${status}</td>
+            `;
+            
+            tableBody.insertBefore(newRow, tableBody.firstChild);
+            
+            while (tableBody.children.length > 10) {
+                tableBody.removeChild(tableBody.lastChild);
+            }
+        }
+
+        function updateActivity() {
+            const activities = [
+                { location: 'Highway 101', event: 'Vehicle Count', status: '<span class="text-green-600 font-medium">✓ Normal</span>' },
+                { location: 'Downtown Circle', event: 'Speed Monitor', status: '<span class="text-yellow-600 font-medium">⚠ Alert</span>' },
+                { location: 'School Zone', event: 'Pedestrian Detection', status: '<span class="text-green-600 font-medium">✓ Safe</span>' },
+                { location: 'Industrial Ave', event: 'Heavy Vehicle', status: '<span class="text-blue-600 font-medium">ℹ Logged</span>' }
+            ];
+            
+            const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+            addActivity(randomActivity.location, randomActivity.event, randomActivity.status);
+        }
+
+        // Utility functions (Omitted for brevity, kept same as previous step)
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-5 right-5 p-4 px-6 rounded-lg text-white font-bold z-50 transition-all duration-300 ease-in-out transform translate-x-full';
+            
+            const colors = {
+                success: 'bg-green-500',
+                error: 'bg-red-500',
+                info: 'bg-blue-500',
+                warning: 'bg-yellow-500'
+            };
+            
+            notification.classList.add(colors[type] || colors.info);
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+                notification.classList.add('translate-x-0');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        }
+
+        function generateReport() {
+            showNotification('Report generation started...', 'info');
+            setTimeout(() => {
+                showNotification('Report generated successfully!', 'success');
+                let link = document.getElementById('downloadLink');
+                if (!link) {
+                    link = document.createElement('a');
+                    link.id = 'downloadLink';
+                    link.href = '#';
+                    link.download = 'traffic_report.pdf';
+                    link.className = 'inline-block mt-4 p-3 px-5 bg-blue-500 text-white rounded-lg no-underline';
+                    link.textContent = 'Download Report';
+                    document.getElementById('reports').querySelector('.bg-white').appendChild(link);
+                }
+            }, 2000);
+        }
+
+        function saveSettings() {
+            showNotification('Settings saved successfully!', 'success');
+        }
+
+        function editUser(username) {
+            showNotification(`Editing user: ${username}`, 'info');
+        }
+
+        // Real-time data simulation (Omitted for brevity, kept same as previous step)
+        function simulateRealTimeData() {
+            setInterval(() => {
+                const statCards = document.querySelectorAll('#dashboard .bg-gradient-to-r h3'); // More specific selector
+                statCards.forEach((card, index) => {
+                    if (index === 0) { // Active Cameras
+                        const current = parseInt(card.textContent.replace(',', ''));
+                        const change = Math.floor(Math.random() * 3) - 1;
+                        card.textContent = (current + change).toLocaleString();
+                    } else if (index === 2) { // Vehicles Detected
+                        const current = parseInt(card.textContent.replace(',', ''));
+                        const change = Math.floor(Math.random() * 50);
+                        card.textContent = (current + change).toLocaleString();
+                    }
+                });
+            }, 10000);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            init();
+            simulateRealTimeData();
+        });
+
+    </script>
+</body>
+</html>

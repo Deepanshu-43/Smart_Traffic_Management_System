@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Traffic Management System Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flow-line {
+            width: 2px;
+            height: 2.5rem;
+            background-color: #1e40af;
+        }
+        .flow-arrow::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #1e40af;
+            margin: 0 auto;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 9999px;
+            background-color: #2563eb;
+            border: 2px solid white;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #2563eb;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <header class="bg-white shadow-md p-6 text-center">
+        <h1 class="text-4xl font-extrabold text-blue-800">Smart Traffic Management System For Urban Congestion</h1>
+        <p class="text-xl text-slate-700 mt-2">A smart step towards an smart city initiative!!</p>
+        <a href="main.html" align="right"><button class="btn">Login</button></a>
+    </header>
+
+    <nav class="sticky top-0 bg-blue-800 text-white z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-3 flex justify-center space-x-4 md:space-x-8 overflow-x-auto">
+            <a href="#problem" class="font-semibold hover:text-blue-300 transition-colors whitespace-nowrap">The Problem</a>
+            <a href="#solution" class="font-semibold hover:text-blue-300 transition-colors whitespace-nowrap">The Solution</a>
+            <a href="#architecture" class="font-semibold hover:text-blue-300 transition-colors whitespace-nowrap">Architecture</a>
+            <a href="#capabilities" class="font-semibold hover:text-blue-300 transition-colors whitespace-nowrap">AI Capabilities</a>
+            <a href="#impact" class="font-semibold hover:text-blue-300 transition-colors whitespace-nowrap">Projected Impact</a>
+            <a href="#roadmap" class="font-semibold hover:text-blue-300 transition-colors whitespace-nowrap">Roadmap</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="problem" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-4">Our Cities are Gridlocked</h2>
+            <p class="text-lg text-slate-700 text-center max-w-3xl mx-auto mb-10">
+                Urban areas face an escalating crisis of traffic congestion. Traditional, pre-timed systems are inefficient, leading to wasted time, increased fuel consumption, and a greater risk of accidents. The problem is clear, and the need for an intelligent solution is urgent.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <span class="text-6xl font-extrabold text-red-500">40%</span>
+                    <p class="text-xl font-semibold text-slate-700 mt-2">Increase in Urban Congestion (Projected)</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <span class="text-6xl font-extrabold text-red-500">1.5x</span>
+                    <p class="text-xl font-semibold text-slate-700 mt-2">Longer Commute Times in Peak Hours</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <span class="text-6xl font-extrabold text-red-500">25%</span>
+                    <p class="text-xl font-semibold text-slate-700 mt-2">More Fuel Wasted in Gridlock</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="my-16 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-4">The Solution: An AI-Powered Platform</h2>
+            <p class="text-lg text-slate-700 text-center max-w-3xl mx-auto mb-10">
+                Introducing the Smart Traffic Management System (STMS), an intelligent platform designed to turn chaos into mobility. It leverages cutting-edge AI and a central web dashboard to monitor, analyze, and manage traffic in real-time.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <span class="text-5xl">🚦</span>
+                    <h3 class="text-2xl font-bold text-blue-800 my-3">Real-Time Monitoring</h3>
+                    <p class="text-slate-600">Live video feeds from IP cameras and webcams are processed instantly, providing an up-to-the-second view of traffic conditions.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <span class="text-5xl">🤖</span>
+                    <h3 class="text-2xl font-bold text-blue-800 my-3">AI-Powered Analysis</h3>
+                    <p class="text-slate-600">Using models like YOLO and PyTorch, the system detects vehicles, pedestrians, and signs, classifying traffic and identifying events.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <span class="text-5xl">📊</span>
+                    <h3 class="text-2xl font-bold text-blue-800 my-3">Admin & Reporting</h3>
+                    <p class="text-slate-600">A secure web dashboard allows admins to view stats, manage event logs, and generate reports on traffic volume and violations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="my-16 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-4">System Architecture</h2>
+            <p class="text-lg text-slate-700 text-center max-w-3xl mx-auto mb-10">
+                STMS integrates a modern tech stack to connect real-world sensors to a powerful analytical backend and an intuitive user frontend. The data flows securely from capture to analysis and presentation.
+            </p>
+            <div class="flex flex-col items-center">
+                <div class="bg-white rounded-lg shadow-md p-4 w-64 text-center">
+                    <h3 class="text-xl font-semibold text-blue-800">Users (Admin & System)</h3>
+                </div>
+                <div class="flow-line flow-arrow"></div>
+                <div class="bg-white rounded-lg shadow-md p-4 w-64 text-center">
+                    <h3 class="text-xl font-semibold text-blue-800">Web Dashboard (Frontend)</h3>
+                    <p class="text-sm text-slate-600">HTML / CSS / JS</p>
+                </div>
+                <div class="flow-line flow-arrow"></div>
+                <div class="bg-white rounded-lg shadow-md p-4 w-64 text-center">
+                    <h3 class="text-xl font-semibold text-blue-800">Backend API</h3>
+                    <p class="text-sm text-slate-600">Python / Flask</p>
+                </div>
+                <div class="flow-line flow-arrow"></div>
+                <div class="bg-white rounded-lg shadow-md p-4 w-64 text-center">
+                    <h3 class="text-xl font-semibold text-blue-800">AI Models</h3>
+                    <p class="text-sm text-slate-600">YOLO, PyTorch, OpenCV</p>
+                </div>
+                <div class="flow-line flow-arrow"></div>
+                <div class="bg-white rounded-lg shadow-md p-4 w-64 text-center">
+                    <h3 class="text-xl font-semibold text-blue-800">System Database</h3>
+                    <p class="text-sm text-slate-600">User & Event Logs</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="capabilities" class="my-16 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-4">Core AI Capabilities</h2>
+            <p class="text-lg text-slate-700 text-center max-w-3xl mx-auto mb-10">
+                At the heart of STMS are powerful AI modules that provide comprehensive, real-time traffic analysis. Each module serves a specific purpose, from initial detection to detailed classification and tracking.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-3">YOLO Object Detection</h3>
+                    <p class="text-slate-600 mb-4">YOLO (You Only Look Once) provides high-speed, real-time object detection. This chart shows a typical breakdown of objects identified in a busy urban frame.</p>
+                    <div class="chart-container">
+                        <canvas id="yoloChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Vehicle Classification</h3>
+                    <p class="text-slate-600 mb-4">A specialized module counts and classifies all vehicle types, which is essential for accurate traffic flow analysis and understanding road usage patterns.</p>
+                    <div class="chart-container">
+                        <canvas id="vehicleTypeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Traffic Flow Analysis</h3>
+                    <p class="text-slate-600 mb-4">The Object Tracking module monitors vehicle movement over time. This allows the system to identify peak hours and quantify traffic volume, as shown in this hourly breakdown.</p>
+                    <div class="chart-container">
+                        <canvas id="trafficFlowChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Logged Event Types</h3>
+                    <p class="text-slate-600 mb-4">The system logs all significant events for review. While vehicle detection is most common, the identification of "Speed Violations" (a key area for future work) is critical for safety.</p>
+                    <div class="chart-container">
+                        <canvas id="eventPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="my-16 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-4">Projected Impact</h2>
+            <p class="text-lg text-slate-700 text-center max-w-3xl mx-auto mb-10">
+                By implementing the Smart Traffic Management System, cities can expect transformative improvements in urban mobility, public safety, and environmental quality. This chart compares key metrics before and after STMS adoption.
+            </p>
+            <div class="bg-white rounded-lg shadow-md p-6 md:col-span-2">
+                <h3 class="text-2xl font-bold text-blue-800 mb-3 text-center">Key Performance Metrics: Before vs. After STMS</h3>
+                <div class="chart-container" style="max-width: 800px; height: 400px; max-height: 500px;">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="my-16 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-4">Project Roadmap</h2>
+            <p class="text-lg text-slate-700 text-center max-w-3xl mx-auto mb-10">
+                This 14-week project is structured for success, moving methodically from initial research and system design to full-scale AI integration, testing, and final deployment.
+            </p>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="relative pl-8 border-l-4 border-blue-800">
+                    
+                    <div class="mb-8 relative">
+                        <div class="timeline-dot"></div>
+                        <h4 class="text-xl font-bold text-blue-800">Weeks 1-4: Research & Design</h4>
+                        <p class="text-slate-600">   Requirement analysis, literature review, system architecture design, and UI/UX prototyping for the web dashboard.</p>
+                    </div>
+
+                    <div class="mb-8 relative">
+                        <div class="timeline-dot"></div>
+                        <h4 class="text-xl font-bold text-blue-800">Weeks 5-9: Backend & AI Integration</h4>
+                        <p class="text-slate-600">   Setup of the Python/Flask backend, database integration, and implementation of core AI models (YOLO, PyTorch, Tracking).</p>
+                    </div>
+
+                    <div class="mb-8 relative">
+                        <div class="timeline-dot"></div>
+                        <h4 class="text-xl font-bold text-blue-800">Weeks 10-12: Frontend & API Hookup</h4>
+                        <p class="text-slate-600">   Development of the HTML/CSS/JS frontend and connecting all dashboard components to the backend API endpoints.</p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="timeline-dot"></div>
+                        <h4 class="text-xl font-bold text-blue-800">Weeks 13-14: Testing & Deployment</h4>
+                        <p class="text-slate-600">   End-to-end system testing, debugging, performance optimization, and preparation of the final report and deployment.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-blue-900 text-blue-200 text-center p-8 mt-12">
+        <p>A Smart City solution powered by AI and Computer Vision.</p>
+        <p class="text-sm opacity-75 mt-2">&copy;Made by Deepanshu Dhar</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (typeof label !== 'string' || label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const chartColors = ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd'];
+            const accentRed = '#ef4444';
+
+            const yoloCtx = document.getElementById('yoloChart')?.getContext('2d');
+            if (yoloCtx) {
+                new Chart(yoloCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Vehicles', 'Pedestrians', 'Traffic Signs'],
+                        datasets: [{
+                            data: [65, 25, 10],
+                            backgroundColor: chartColors,
+                            borderColor: '#ffffff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const vehicleTypeCtx = document.getElementById('vehicleTypeChart')?.getContext('2d');
+            if (vehicleTypeCtx) {
+                new Chart(vehicleTypeCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Cars', 'Trucks', 'Motorcycles', 'Buses'],
+                        datasets: [{
+                            label: 'Vehicle Count',
+                            data: [120, 35, 40, 15],
+                            backgroundColor: chartColors,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            const trafficFlowCtx = document.getElementById('trafficFlowChart')?.getContext('2d');
+            if (trafficFlowCtx) {
+                new Chart(trafficFlowCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['6 AM', '9 AM', '12 PM', '3 PM', '6 PM', '9 PM'],
+                        datasets: [{
+                            label: 'Vehicles per Hour',
+                            data: [150, 450, 300, 400, 500, 200],
+                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                            borderColor: '#2563eb',
+                            fill: true,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            const eventPieCtx = document.getElementById('eventPieChart')?.getContext('2d');
+            if (eventPieCtx) {
+                new Chart(eventPieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Vehicle Detection', 'Congestion Alert', 'Speed Violation', 'Pedestrian Alert'],
+                        datasets: [{
+                            data: [50, 20, 15, 15],
+                            backgroundColor: ['#2563eb', '#3b82f6', accentRed, '#93c5fd'],
+                            borderColor: '#ffffff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const impactCtx = document.getElementById('impactChart')?.getContext('2d');
+            if (impactCtx) {
+                const originalLabels = ['Avg. Travel Time (min)', 'Congestion Level (%)', 'Accident Rate (per 10k)'];
+                const wrappedLabels = originalLabels.map(wrapLabel);
+                
+                new Chart(impactCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: wrappedLabels,
+                        datasets: [
+                            {
+                                label: 'Before STMS',
+                                data: [45, 85, 25],
+                                backgroundColor: '#60a5fa',
+                            },
+                            {
+                                label: 'After STMS (Projected)',
+                                data: [30, 40, 15],
+                                backgroundColor: '#2563eb',
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Metric Value'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
