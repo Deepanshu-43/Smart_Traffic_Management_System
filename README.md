@@ -5,4 +5,4 @@ It is an advance traffic management system designed to reduce the congestions an
 **Technologies**
 1. Frontend: Laouts:- HTML; Styling:- Tailwind CSS; Functionality:- JavaScript 
 2. Backend: Python (OpenCV, Yolo, PyTorch)
-3. Concepts of Deep learning and image processing
+3. Machine Learning: Concepts of Deep learning and image processing
