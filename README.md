@@ -1,5 +1,6 @@
-#Smart Traffic Management System  is an advance traffic management system designed to reduce the congestions and heavy traffic in the major cites.
+**#Smart Traffic Management System** 
+It is an advance traffic management system designed to reduce the congestions and avoid bottleneck situations in the major cites.
 **Technologies**
-1. Laouts: HTML, Styling: Tailwind CSS, Functionality: JavaScript 
-2. Pyton is used as the backend
+1. Frontend: Laouts:- HTML; Styling:- Tailwind CSS; Functionality:- JavaScript 
+2. Backend: Python (OpenCV, Yolo, PyTorch)
 3. Concepts of Deep learning and image processing
